@@ -12,12 +12,18 @@ public class Shoot : MonoBehaviour {
     }
 
     void Update() {
-        
+        Destroy(gameObject, 3f);//Destruindo após 3 segundos caso não atinja ninguém
     }
 
      //Evento de trigger com o inimigo
     private void OnTriggerEnter2D(Collider2D collision) {
-        Destroy(collision.gameObject);//Destruindo o elemento que colidiu
-        Destroy(gameObject);//Destruindo o elemento do tiro
+        if (!collision.CompareTag("End")) {
+            //Chamando método de morte do inimigo
+            collision.GetComponent<Enemy>().Die();
+
+            Destroy(collision.gameObject);//Destruindo o elemento que colidiu
+            Destroy(gameObject);//Destruindo o elemento do tiro
+        }
     }
+
 }

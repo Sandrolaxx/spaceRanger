@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour {
 
-    //Definindo Rigidbody
-    public Rigidbody2D enemyRb;
+    public Rigidbody2D enemyRb;//Definindo Rigidbody
+    public GameObject enemyExplosion;
+    public AudioClip explosionSfx;
     public float enemyVelocity = 2f;
 
     void Start() {
@@ -15,6 +17,25 @@ public class Enemy : MonoBehaviour {
     }
 
     void Update() {
-        
+        Destroy(gameObject, 10f);//Destruindo caso não destruído pelo player
     }
+
+    //Ao morrer chamar a animação de explosão
+    public void Die() {
+        GameObject explosion = Instantiate(enemyExplosion, transform.position, transform.rotation);
+        
+        Destroy(explosion, 0.4f);
+
+        AudioSource.PlayClipAtPoint(explosionSfx, transform.position);
+    }
+
+    //Checando se tocou na trigger do EndGame
+    private void OnTriggerEnter2D(Collider2D collision) {
+
+        if (collision.CompareTag("End")) {
+            SceneManager.LoadScene("Menu");//Podemos passar tanto o nome quanto o index da cena
+        }
+
+    }
+
 }

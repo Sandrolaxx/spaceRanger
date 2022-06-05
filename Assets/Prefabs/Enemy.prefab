@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyRb: {fileID: 4910349659337382580}
+  enemyExplosion: {fileID: 1167086168334092537, guid: e8a34d6555096646abbcf51b63df70d1, type: 3}
+  explosionSfx: {fileID: 8300000, guid: 305c728db3e26bb3492218e92bd9ca7f, type: 3}
   enemyVelocity: 2
 --- !u!50 &4910349659337382580
 Rigidbody2D:
