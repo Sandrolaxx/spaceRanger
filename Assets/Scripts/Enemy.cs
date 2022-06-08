@@ -27,6 +27,13 @@ public class Enemy : MonoBehaviour {
         Destroy(explosion, 0.4f);
 
         AudioSource.PlayClipAtPoint(explosionSfx, transform.position);
+
+        if (GameManager.GetDeads() >= 5) {
+            GameManager.ResetDead();
+            SceneManager.LoadScene("GameLv2");
+        } else {
+            GameManager.SumDead();
+        }
     }
 
     //Checando se tocou na trigger do EndGame

@@ -11,8 +11,10 @@ public class Player : MonoBehaviour {
 
     // Pegando o objeto do tiro
     public GameObject shoot;
+    public GameObject levelTitle;
 
     void Start() {
+        Instantiate(levelTitle, transform.position, transform.rotation);
     }
 
     void Update() {
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour {
         movement.x = Mathf.Clamp(movement.x, xMin, xMax);
 
         if (Input.GetButtonDown("Fire1")) {
+            levelTitle.SetActive(true);
             Fire();
         }
 
