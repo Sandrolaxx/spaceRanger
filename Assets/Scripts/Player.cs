@@ -14,7 +14,9 @@ public class Player : MonoBehaviour {
     public GameObject levelTitle;
 
     void Start() {
-        Instantiate(levelTitle, transform.position, transform.rotation);
+        GameObject levelTitleInstantiated = Instantiate(levelTitle, new Vector3(0.1f, 3f), transform.rotation);
+
+        Destroy(levelTitleInstantiated, 3);
     }
 
     void Update() {
@@ -27,7 +29,6 @@ public class Player : MonoBehaviour {
         movement.x = Mathf.Clamp(movement.x, xMin, xMax);
 
         if (Input.GetButtonDown("Fire1")) {
-            levelTitle.SetActive(true);
             Fire();
         }
 
