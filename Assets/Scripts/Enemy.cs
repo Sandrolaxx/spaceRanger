@@ -28,9 +28,15 @@ public class Enemy : MonoBehaviour {
 
         AudioSource.PlayClipAtPoint(explosionSfx, transform.position);
 
-        if (GameManager.GetDeads() >= 5) {
+        if (GameManager.GetDeads() > 2) {
             GameManager.ResetDead();
-            SceneManager.LoadScene("GameLv2");
+
+            if (SceneManager.GetActiveScene().name == "GameLv2") {
+                SceneManager.LoadScene("Menu");
+            } else {
+                SceneManager.LoadScene("GameLv2");
+            }
+
         } else {
             GameManager.SumDead();
         }
